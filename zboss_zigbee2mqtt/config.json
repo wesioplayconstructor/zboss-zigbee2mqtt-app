@@ -71,7 +71,8 @@
       "master": "str?",
       "slave": "str?",
       "options": "str?",
-      "log": "bool?"
+      "log": "bool?",
+      "log_level": "str?"
     },
     "mqtt": {
       "server": "str?",
@@ -90,6 +91,5 @@
     },
     "watchdog": "str?",
     "force_onboarding": "bool?"
-  },
-  "image": "ghcr.io/tostmann/zigbee2mqtt-esp32"
+  }
 }
