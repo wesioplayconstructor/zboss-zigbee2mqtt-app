@@ -1,0 +1,3 @@
+build_from:
+  amd64: "ghcr.io/tostmann/zigbee2mqtt-esp32:latest"
+  aarch64: "ghcr.io/tostmann/zigbee2mqtt-esp32:latest"
