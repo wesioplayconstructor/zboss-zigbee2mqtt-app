@@ -3,6 +3,8 @@
   "version": "latest",
   "slug": "zboss_zigbee2mqtt",
   "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 (patch tostmann/esp-coordinator)",
+  "icon": "mdi:zigbee",
+  "panel_icon": "mdi:zigbee",
   "uart": true,
   "udev": true,
   "url": "https://github.com/wesioplayconstructor/zboss-zigbee2mqtt-app",
@@ -19,7 +21,6 @@
   "init": false,
   "ingress": true,
   "timeout": 30,
-  "panel_icon": "mdi:zigbee",
   "map": [
     {
       "type": "share",
@@ -91,6 +92,5 @@
     },
     "watchdog": "str?",
     "force_onboarding": "bool?"
-  },
-  "image": "ghcr.io/tostmann/zigbee2mqtt-esp32"
+  }
 }
