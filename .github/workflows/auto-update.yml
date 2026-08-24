@@ -1,0 +1,62 @@
+name: "Auto-update ZBOSS image version"
+
+on:
+  schedule:
+    # Verifica toda segunda às 8h (horário Brasília = 11h UTC)
+    - cron: "0 11 * * 1"
+  workflow_dispatch:
+
+jobs:
+  check-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get latest ZBOSS image digest
+        id: digest
+        run: |
+          DIGEST=$(docker manifest inspect ghcr.io/tostmann/zigbee2mqtt-esp32:latest 2>/dev/null | \
+            python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('config',{}).get('digest','unknown')[:12])")
+          echo "digest=$DIGEST" >> $GITHUB_OUTPUT
+          echo "Current digest prefix: $DIGEST"
+
+      - name: Get current version in config.json
+        id: current
+        run: |
+          VERSION=$(python3 -c "import json; d=json.load(open('zboss_zigbee2mqtt/config.json')); print(d['version'])")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+
+      - name: Bump patch version
+        id: bump
+        run: |
+          CURRENT="${{ steps.current.outputs.version }}"
+          # Incrementa o sufixo após o último '-'
+          BASE=$(echo $CURRENT | sed 's/-[0-9]*$//')
+          PATCH=$(echo $CURRENT | grep -oP '(?<=-)\d+$')
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="${BASE}-${NEW_PATCH}"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $NEW_VERSION"
+
+      - name: Update config.json version
+        run: |
+          python3 -c "
+          import json
+          with open('zboss_zigbee2mqtt/config.json') as f:
+              d = json.load(f)
+          d['version'] = '${{ steps.bump.outputs.new_version }}'
+          with open('zboss_zigbee2mqtt/config.json', 'w') as f:
+              json.dump(d, f, indent=2, ensure_ascii=False)
+          print('Updated to', d['version'])
+          "
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add zboss_zigbee2mqtt/config.json
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -m "chore: bump version to ${{ steps.bump.outputs.new_version }} (weekly auto-update)"
+          git push
