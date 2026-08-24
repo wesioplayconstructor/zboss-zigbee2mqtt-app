@@ -1,0 +1,43 @@
+name: "Zigbee2MQTT ZBOSS (ESP32-C6)"
+version: "1.0.0"
+slug: "zboss_zigbee2mqtt"
+description: "Zigbee2MQTT otimizado com patch ZBOSS para o ESP32-C6 do Mestre Wésio"
+url: "https://github.com/wesioplayconstructor/zboss-zigbee2mqtt-app"
+arch:
+  - amd64
+  - aarch64
+image: "ghcr.io/tostmann/zigbee2mqtt-esp32:latest"
+webui: "http://[HOST]:[PORT:8099]"
+ingress: true
+ingress_port: 8099
+panel_icon: "mdi:zigbee"
+panel_title: "Zigbee2MQTT"
+host_network: true
+privileged:
+  - CONFIG_SYS_RAWIO
+devices:
+  - "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_98:A3:16:BF:20:A0-if00:/dev/ttyACM0:rwm"
+  - "/dev/ttyACM0:/dev/ttyACM0:rwm"
+  - "/dev/ttyUSB0:/dev/ttyUSB0:rwm"
+schema:
+  homeassistant: bool
+  permit_join: bool
+  mqtt:
+    server: str
+    user: str
+    password: str
+  serial:
+    port: str
+    adapter: str
+    baudrate: int
+options:
+  homeassistant: true
+  permit_join: true
+  mqtt:
+    server: "mqtt://core-mosquitto:1883"
+    user: "wesio"
+    password: "wasd"
+  serial:
+    port: "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_98:A3:16:BF:20:A0-if00"
+    adapter: "zboss"
+    baudrate: 115200
