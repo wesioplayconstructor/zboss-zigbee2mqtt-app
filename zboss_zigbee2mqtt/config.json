@@ -1,6 +1,6 @@
 {
   "name": "Zigbee2MQTT ZBOSS (ESP32-C6)",
-  "version": "2.13.0-16",
+  "version": "2.14.0",
   "slug": "zboss_zigbee2mqtt",
   "description": "Oficial Zigbee2MQTT com suporte a rádio ZBOSS para ESP32-C6 / ESP32-H2",
   "url": "https://github.com/wesioplayconstructor/zboss-zigbee2mqtt-app",
