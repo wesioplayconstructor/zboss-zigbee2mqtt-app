@@ -1,6 +1,6 @@
 {
   "name": "Zigbee2MQTT ZBOSS (ESP32-C6)",
-  "version": "2.13.0-6",
+  "version": "2.13.0-7",
   "slug": "zboss_zigbee2mqtt",
   "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 (patch tostmann/esp-coordinator)",
   "icon": true,
@@ -47,7 +47,7 @@
     "8099/tcp": "Frontend tcp-listen port"
   },
   "options": {
-    "data_path": "/config/zigbee2mqtt",
+    "data_path": "/config/zboss_zigbee2mqtt",
     "socat": {
       "enabled": false,
       "master": "pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777",
