@@ -1,8 +1,8 @@
 {
   "name": "Zigbee2MQTT ZBOSS (ESP32-C6)",
-  "version": "2.13.0-14",
+  "version": "2.13.0",
   "slug": "zboss_zigbee2mqtt",
-  "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 (patch tostmann/esp-coordinator)",
+  "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 e ESP32-H2 (baseado no patch tostmann/esp-coordinator)",
   "icon": true,
   "logo": true,
   "panel_icon": "mdi:zigbee",
@@ -47,7 +47,7 @@
     "8099/tcp": "Frontend tcp-listen port"
   },
   "options": {
-    "data_path": "/config/zboss_zigbee2mqtt",
+    "data_path": "/config/zigbee2mqtt_zboss",
     "socat": {
       "enabled": false,
       "master": "pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777",
@@ -56,13 +56,9 @@
       "log": false
     },
     "mqtt": {
-      "server": "mqtt://core-mosquitto:1883",
-      "user": "wesio",
-      "password": "wasd",
-      "base_topic": "zboss_zigbee2mqtt"
+      "base_topic": "zigbee2mqtt_zboss"
     },
     "serial": {
-      "port": "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_98:A3:16:BF:20:A0-if00",
       "adapter": "zboss",
       "baudrate": 115200
     }
@@ -87,8 +83,8 @@
       "base_topic": "str?"
     },
     "serial": {
-      "port": "str?",
-      "adapter": "match(zstack|deconz|zigate|ezsp|ember|zboss)?",
+      "port": "device(subsystem=tty)?",
+      "adapter": "match(zboss|zstack|deconz|zigate|ezsp|ember)?",
       "baudrate": "int?",
       "rtscts": "bool?"
     },
