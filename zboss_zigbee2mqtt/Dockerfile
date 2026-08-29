@@ -2,7 +2,7 @@ FROM ghcr.io/tostmann/zigbee2mqtt-esp32:latest
 
 WORKDIR /app
 
-COPY run.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY run.sh /app/run.sh
+RUN chmod +x /app/run.sh
 
-ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]
+CMD ["/app/run.sh"]

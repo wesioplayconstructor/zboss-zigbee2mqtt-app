@@ -1,6 +1,6 @@
 {
   "name": "Zigbee2MQTT ZBOSS (ESP32-C6)",
-  "version": "2.13.0-13",
+  "version": "2.13.0-14",
   "slug": "zboss_zigbee2mqtt",
   "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 (patch tostmann/esp-coordinator)",
   "icon": true,
