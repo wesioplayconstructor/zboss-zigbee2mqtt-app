@@ -1,6 +1,6 @@
 {
   "name": "Zigbee2MQTT ZBOSS (ESP32-C6)",
-  "version": "2.13.0-11",
+  "version": "2.13.0-12",
   "slug": "zboss_zigbee2mqtt",
   "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 (patch tostmann/esp-coordinator)",
   "icon": true,
@@ -56,6 +56,9 @@
       "log": false
     },
     "mqtt": {
+      "server": "mqtt://core-mosquitto:1883",
+      "user": "wesio",
+      "password": "wasd",
       "base_topic": "zboss_zigbee2mqtt"
     },
     "serial": {
