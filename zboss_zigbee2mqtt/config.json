@@ -2,26 +2,23 @@
   "name": "Zigbee2MQTT ZBOSS (ESP32-C6)",
   "version": "2.13.0",
   "slug": "zboss_zigbee2mqtt",
-  "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 e ESP32-H2 (baseado no patch tostmann/esp-coordinator)",
-  "icon": true,
-  "logo": true,
-  "panel_icon": "mdi:zigbee",
-  "uart": true,
-  "udev": true,
+  "description": "Oficial Zigbee2MQTT com suporte a rádio ZBOSS para ESP32-C6 / ESP32-H2",
   "url": "https://github.com/wesioplayconstructor/zboss-zigbee2mqtt-app",
-  "startup": "application",
-  "services": [
-    "mqtt:need"
-  ],
-  "hassio_api": true,
   "arch": [
     "aarch64",
     "amd64"
   ],
+  "startup": "application",
   "boot": "auto",
   "init": false,
+  "uart": true,
+  "udev": true,
   "ingress": true,
-  "timeout": 30,
+  "panel_icon": "mdi:zigbee",
+  "services": [
+    "mqtt:need"
+  ],
+  "hassio_api": true,
   "map": [
     {
       "type": "share",
@@ -47,7 +44,7 @@
     "8099/tcp": "Frontend tcp-listen port"
   },
   "options": {
-    "data_path": "/config/zigbee2mqtt_zboss",
+    "data_path": "/config/zigbee2mqtt",
     "socat": {
       "enabled": false,
       "master": "pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777",
@@ -55,12 +52,9 @@
       "options": "-d -d",
       "log": false
     },
-    "mqtt": {
-      "base_topic": "zigbee2mqtt_zboss"
-    },
+    "mqtt": {},
     "serial": {
-      "adapter": "zboss",
-      "baudrate": 115200
+      "adapter": "zboss"
     }
   },
   "schema": {
@@ -83,7 +77,7 @@
       "base_topic": "str?"
     },
     "serial": {
-      "port": "device(subsystem=tty)?",
+      "port": "str?",
       "adapter": "match(zboss|zstack|deconz|zigate|ezsp|ember)?",
       "baudrate": "int?",
       "rtscts": "bool?"
