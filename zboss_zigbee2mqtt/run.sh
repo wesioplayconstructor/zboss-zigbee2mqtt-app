@@ -1,6 +1,7 @@
 #!/bin/sh
 if [ -f /data/options.json ]; then
     sed -i 's|"/config/zigbee2mqtt"|"/config/zboss_zigbee2mqtt"|g' /data/options.json
+    sed -i 's|98:A3:16:BF:27:18|98:A3:16:BF:20:A0|g' /data/options.json
 fi
 
 if [ -f /docker-entrypoint.sh ]; then

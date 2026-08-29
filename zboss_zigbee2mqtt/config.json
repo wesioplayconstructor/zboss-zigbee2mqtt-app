@@ -1,6 +1,6 @@
 {
   "name": "Zigbee2MQTT ZBOSS (ESP32-C6)",
-  "version": "2.13.0-10",
+  "version": "2.13.0-11",
   "slug": "zboss_zigbee2mqtt",
   "description": "Zigbee2MQTT com suporte nativo ZBOSS para ESP32-C6 (patch tostmann/esp-coordinator)",
   "icon": true,
@@ -59,7 +59,7 @@
       "base_topic": "zboss_zigbee2mqtt"
     },
     "serial": {
-      "port": "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_98:A3:16:BF:27:18-if00",
+      "port": "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_98:A3:16:BF:20:A0-if00",
       "adapter": "zboss",
       "baudrate": 115200
     }
